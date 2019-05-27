@@ -1,3 +1,4 @@
+import time
 def insort(a):
         for i in range(1,len(a)):
                 r=a[i]
@@ -25,4 +26,7 @@ def bucket(x):
 print("Enter the elements which are <1")
 x = [float(x) for x in input().split()]
 print("Sorted Array is")
+a = time.clock
 print(bucket(x))
+b = time.clock
+print("Execution time is:",(a-b),"s")
