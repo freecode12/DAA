@@ -4,47 +4,65 @@ import random
 
 
 
-def partition(arr,low,high):
+def quick_sort(alist, start, end):
 
-        i = low-1
+    if end - start > 1:
 
-        pivot = arr[high]
+        p = partition(alist, start, end)
 
-        for j in range(low,high):
+        quick_sort(alist, start, p)
 
-                if arr[j] <= pivot:
+        quick_sort(alist, p + 1, end)
 
-                        i += 1
+def partition(alist, start, end):
 
-                        arr[i], arr[j] = arr[j], arr[i]
+    pivot = alist[start]
 
-        arr[i+1], arr[high] = arr[high], arr[i+1]
+    i = start + 1
 
-        return i+1
+    j = end - 1
 
-def quick_sort(arr,low,high):
 
-        if low < high:
 
-                pi = partition(arr,low,high)
+    while True:
 
-                quick_sort(arr,low,pi-1)
+        while (i <= j and alist[i] <= pivot):
 
-                quick_sort(arr,pi,high)
+            i = i + 1
 
-m= int(input("enter the no. of elements in the list: "))
+        while (i <= j and alist[j] >= pivot):
 
-a=[random.randint(0,100) for i in range(0,m)]
+            j = j - 1
 
-print(a)
+
+
+        if i <= j:
+
+            alist[i], alist[j] = alist[j], alist[i]
+
+        else:
+
+            alist[start], alist[j] = alist[j], alist[start]
+
+            return j
+
+print("enter an array")
+
+alist = [random.randint(0,99) for x in range(10)]
+
+print('Unsorted list: ', end='')
+
+print(alist)
+
+print('sorted list: ', end='')
 
 start = time.clock()
 
-quick_sort(a,0,(len(a)-1))
+quick_sort(alist,0,(len(alist)-1))
 
 end = time.clock()
 
-print(a)
+print(alist)
 
 print (end-start)
 
